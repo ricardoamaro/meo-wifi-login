@@ -11,7 +11,7 @@ import json
 
 # Sends a POST request with the required data to login to a MEO Wifi Premium Hotspot
 def meo_wifi_login(username, password):
-  print 'Certifique-se que está ligado ao SSID: MEO-WIFI'
+  print 'Certifique-se que esta ligado ao SSID: MEO-WIFI'
   print 'Autenticando a meo-wifi...'
   url ='https://wifi.meo.pt/HttpHandlers/HotspotConnection.asmx/Login' + '?usr=' + username
   headers = {'content-type': 'application/json'}
@@ -22,7 +22,7 @@ def meo_wifi_login(username, password):
 
 # Sends a POST request to logoff from a MEO Wifi Premium Hotspot
 def meo_wifi_logoff():
-  print 'Desligando a ligação meo-wifi'
+  print 'Desligando meo-wifi'
   url = 'https://wifi.meo.pt/HttpHandlers/HotspotConnection.asmx/Logoff'
   headers = {'content-type': 'application/json'}
   response = requests.post(url, headers=headers)
@@ -38,7 +38,7 @@ def main():
   opts, args = getopt.getopt(sys.argv[1:], "hdu:p:")
   for (opt, arg) in opts:
     if opt == '-h':
-      print 'Instruções.'
+      print 'Instrucoes.'
       print 'Para autenticar depois de estar ligado ao SSID MEO-WIFI:'
       print sys.argv[0] + ' -u <login user> -p <login password>'
       print 'Para desligar:'
