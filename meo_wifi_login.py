@@ -38,7 +38,11 @@ def main():
   opts, args = getopt.getopt(sys.argv[1:], "hdu:p:")
   for (opt, arg) in opts:
     if opt == '-h':
+      print 'Instruções.'
+      print 'Para autenticar depois de estar ligado ao SSID MEO-WIFI:'
       print sys.argv[0] + ' -u <login user> -p <login password>'
+      print 'Para desligar:'
+      print sys.argv[0] + ' -d'
       sys.exit()
     elif opt == '-u':
       user = arg
