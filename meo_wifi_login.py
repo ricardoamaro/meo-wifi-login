@@ -11,6 +11,8 @@ import json
 
 # Sends a POST request with the required data to login to a MEO Wifi Premium Hotspot
 def meo_wifi_login(username, password):
+  print 'Certifique-se que está ligado ao SSID: MEO-WIFI'
+  print 'Autenticando a meo-wifi...'
   url ='https://wifi.meo.pt/HttpHandlers/HotspotConnection.asmx/Login' + '?usr=' + username
   headers = {'content-type': 'application/json'}
   payload = {'username': username, 'password': password}
@@ -20,6 +22,7 @@ def meo_wifi_login(username, password):
 
 # Sends a POST request to logoff from a MEO Wifi Premium Hotspot
 def meo_wifi_logoff():
+  print 'Desligando a ligação meo-wifi'
   url = 'https://wifi.meo.pt/HttpHandlers/HotspotConnection.asmx/Logoff'
   headers = {'content-type': 'application/json'}
   response = requests.post(url, headers=headers)
@@ -32,15 +35,18 @@ def main():
   passwd=os.getenv('MEO_WIFI_PASSWORD', '')
 
   # Parse the arguments
-  opts, args = getopt.getopt(sys.argv[1:], "hu:p:")
+  opts, args = getopt.getopt(sys.argv[1:], "hdu:p:")
   for (opt, arg) in opts:
     if opt == '-h':
-      print sys.argv[0] + '-u <login user> -p <login password>'
+      print sys.argv[0] + ' -u <login user> -p <login password>'
       sys.exit()
     elif opt == '-u':
       user = arg
     elif opt == '-p':
       passwd = arg
+    elif opt == '-d':
+      print meo_wifi_logoff()
+      return 0
 
   # Determine if user and passwords were specified (and ask for them if not)
   if not user:
